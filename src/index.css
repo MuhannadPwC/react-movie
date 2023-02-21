@@ -1,13 +1,104 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+
+:root {
+  --primary: #00a419;
+  --primary-hover: #01da21;
+  --secondary: rgb(0, 200, 200);
+  --secondary-hover: rgb(0, 230, 230);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: "Orbitron";
+  background-color: rgba(150, 150, 150, 0.602);
+}
+* {
+  color: black;
+  margin: 0;
+}
+
+/* Buttons */
+.btn {
+  color: #333;
+  background-color: var(--secondary);
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+}
+.btn:hover {
+  box-shadow: 3px 3px 3px rgb(125, 125, 125);
+  color: black;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* Navbar */
+header {
+  margin-bottom: 12px;
+}
+header nav {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  gap: 5px;
+  border-bottom: 2px solid var(--primary);
+  margin: 0 auto;
+  background-color: #333;
+}
+
+header nav h1 {
+  margin-right: auto;
+  padding: 7px;
+  color: aliceblue;
+}
+
+header nav a {
+  text-decoration: none;
+  padding: 7px;
+  border: 2px solid var(--primary);
+  color: aliceblue;
+}
+header nav a.active,
+header nav a:hover {
+  background-color: var(--primary-hover);
+  color: #333;
+}
+
+/* Search Form */
+.homepage form {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.homepage input {
+  padding: 8px;
+  border-radius: 12px;
+  min-width: 30%;
+}
+
+/* Not Found */
+.not-found {
+  width: 50%;
+  margin: auto;
+}
+.not-found h2 {
+  color: red;
+}
+.not-found p {
+  margin: 20px;
+}
+.not-found p a {
+  text-decoration: none;
 }
