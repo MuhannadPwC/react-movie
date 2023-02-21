@@ -1,5 +1,8 @@
+import { useState } from "react";
 
 const Home = () => {
+
+  const [searchString, setSearchString] = useState();
 
   return (
     <div className="homepage">

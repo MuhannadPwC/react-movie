@@ -12,7 +12,7 @@ const RootLayout = () => {
         </nav>
       </header>
       <main>
-        <Outlet></Outlet>
+        <Outlet />
       </main>
     </div>
    );
