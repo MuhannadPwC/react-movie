@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Orbitron");
 
 :root {
-  --primary: #00a419;
-  --primary-hover: #01da21;
-  --secondary: rgb(0, 200, 200);
-  --secondary-hover: rgb(0, 230, 230);
+  --primary: rgb(0, 200, 200);
+  --primary-hover: rgb(0, 230, 230);
+  --secondary: #00a419;
+  --secondary-hover: #01da21;
 }
 
 body {
@@ -45,9 +45,6 @@ body {
 }
 
 /* Navbar */
-header {
-  margin-bottom: 12px;
-}
 header nav {
   display: flex;
   justify-content: flex-end;
@@ -67,7 +64,7 @@ header nav h1 {
 header nav a {
   text-decoration: none;
   padding: 7px;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--primary-hover);
   color: aliceblue;
 }
 header nav a.active,
@@ -75,7 +72,27 @@ header nav a:hover {
   background-color: var(--primary-hover);
   color: #333;
 }
-
+/* Title */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  min-width: 60%;
+  padding: 70px 25px;
+  background-color: var(--primary);
+  background-image: url('../public/logo192.png');
+}
+.title h1 {
+  font-size: xx-large;
+  margin-bottom: 5px;
+}
+.title p {
+  font-size: larger;
+}
 /* Search Form */
 .homepage form {
   display: flex;
@@ -84,8 +101,13 @@ header nav a:hover {
 }
 .homepage input {
   padding: 8px;
-  border-radius: 12px;
-  min-width: 30%;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  min-width: 70%;
+}
+.homepage button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 /* Not Found */
@@ -101,4 +123,52 @@ header nav a:hover {
 }
 .not-found p a {
   text-decoration: none;
+}
+
+/* Loading & Error */
+.loading, .error-fetch {
+  text-align: center;
+  font-size: xx-large;
+  color: var(--secondary-hover);
+  margin-top: 15px;
+}
+.error-fetch {
+  color: red !important;
+}
+
+/* Movies list */
+.movies-list {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  max-width: 90%;
+  margin: 30px auto;
+  justify-content: space-evenly;
+  row-gap: 20px;
+}
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  border: 10px groove gray;
+  box-shadow: 2px 2px 3px #333;
+  /* background-color: var(--primary); */
+  align-items: center;
+}
+.movie-card:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px 8px #333;
+}
+.movie-card img {
+  /* border: 1px solid; */
+  border-radius: 12px;
+  margin: 5px 0px;
+}
+.movie-card h3 {
+  font-size: medium;
+  text-align: center;
+  margin: 4px 0px;
+}
+.movie-card p {
+  font-size: small;
+  margin: 4px 0px;
+  padding: 10px;
 }
