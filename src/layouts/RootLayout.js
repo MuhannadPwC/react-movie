@@ -8,6 +8,7 @@ const RootLayout = () => {
         <nav>
           <h1>Movie React App</h1>
           <NavLink to="/">Home</NavLink>
+          <NavLink to="/user">User</NavLink>
 
         </nav>
       </header>

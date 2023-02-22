@@ -7,7 +7,7 @@ const FetchPopular = (url) => {
 
   useEffect(() => {
     const abort = new AbortController();
-
+    
     fetch(url, { signal: abort.signal })
     .then(res => {
       if(!res.ok) {
