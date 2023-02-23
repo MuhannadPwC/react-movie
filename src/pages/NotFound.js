@@ -11,7 +11,7 @@ const NotFound = () => {
       </p>
 
       <p>
-        Go to the <NavLink to="/" className="btn btn-primary">Homepage</NavLink>.
+        Go to the <NavLink to="/" className="btn btn-secondary">Homepage</NavLink>.
       </p>
     </div>
   );

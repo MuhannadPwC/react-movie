@@ -1,20 +1,21 @@
-@import url("https://fonts.googleapis.com/css?family=Orbitron");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 
 :root {
-  --primary: rgb(0, 200, 200);
-  --primary-hover: rgb(0, 230, 230);
-  --secondary: #00a419;
-  --secondary-hover: #01da21;
+  --primary: rgb(3, 37, 65);
+  --secondary: #01b4e4;
+  --bg-color: 3, 37, 65;
 }
 
 body {
   margin: 0;
-  font-family: "Orbitron";
-  background-color: rgba(150, 150, 150, 0.602);
+  font-family: "Source Sans Pro", Arial, sans-serif;
 }
 * {
-  color: black;
   margin: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 
 /* Buttons */
@@ -29,84 +30,133 @@ body {
   box-shadow: 3px 3px 3px rgb(125, 125, 125);
   color: black;
 }
-
 .btn-primary {
   background-color: var(--primary);
 }
-.btn-primary:hover {
-  background-color: var(--primary-hover);
-}
-
 .btn-secondary {
   background-color: var(--secondary);
-}
-.btn-secondary:hover {
-  background-color: var(--secondary-hover);
 }
 
 /* Navbar */
 header nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
   margin: 0 auto;
-  gap: 5px;
-  border-bottom: 2px solid var(--primary);
-  margin: 0 auto;
-  background-color: #333;
+  height: 60px;
+  padding: 0px 100px;
+  background-color: rgb(3, 37, 65);
+}
+.flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 80px;
+}
+.lng-btn {
+  color: white;
+  background-color: var(--primary);
+  border: 1px solid white;
+  cursor: pointer;
+  min-height: 27px;
+  border-radius: 4px;
+}
+.lng-btn:hover {
+  background-color: white;
+  color: black;
 }
 
-header nav h1 {
-  margin-right: auto;
-  padding: 7px;
-  color: aliceblue;
+/* Footer */
+footer {
+  max-width: 100%;
+  width: 100vw;
+  background-color: var(--primary);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  padding-top: 44px;
+  padding-bottom: 30px;
 }
 
-header nav a {
-  text-decoration: none;
-  padding: 7px;
-  color: aliceblue;
-}
-header nav a.active,
-header nav a:hover {
-  background-color: var(--primary-hover);
-  color: #333;
-}
 /* Title */
 .flex-container {
   display: flex;
-  justify-content: center;
-  
+  background-image: linear-gradient(
+      to right,
+      rgba(var(--bg-color), 0.8) 0%,
+      rgba(var(--bg-color), 0) 100%
+    ),
+    url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/bgQUBbZ14hfeb975yZ2YzTnAwen.jpg");
+  height: calc(100vh / 2.5);
+  max-height: 360px;
+  min-height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .title {
   display: flex;
   flex-direction: column;
-  min-width: 60%;
+  justify-content: space-between;
   padding: 70px 25px;
-  background-color: var(--primary);
-  /* background-image: url('../public/logo192.png'); */
+  width: 100%;
 }
 .title h1 {
-  font-size: xx-large;
-  margin-bottom: 5px;
+  font-size: 48px;
+  color: white;
 }
-.title p {
-  font-size: larger;
+.title h2 {
+  font-size: 32px;
+  color: white;
 }
 /* Search Form */
+.homepage {
+  max-width: 1400px;
+  margin: auto;
+}
 .homepage form {
   display: flex;
-  justify-content: center;
-  margin-top: 25px;
+  position: relative;
+  top: 0;
+  left: 0;
 }
-.homepage input {
+label {
+  width: 100%;
+}
+.homepage form input[type=text] {
   padding: 8px;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  min-width: 70%;
+  border: none;
+  border-radius: 30px;
+  height: 26px;
+  line-height: 26px;
+  font-size: 1.1em;
+  width: 96%;
 }
 .homepage button {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  padding: 0px 26px;
+  border: none;
+  background: linear-gradient(
+    to right,
+    rgba(30,213,169, 1) 0%,
+    rgba(1,180,228, 1) 100%
+  );
+  border-radius: 30px;
+  position: absolute;
+  top: 0;
+  right: -1px;
+  color: #FFF;
+}
+.homepage button:hover {
+  cursor: pointer;
+  color: #333;
 }
 
 /* Not Found */
@@ -125,29 +175,27 @@ header nav a:hover {
 }
 
 /* Loading & Error */
-.loading, .error-fetch {
+.loading,
+.error-fetch {
   text-align: center;
   font-size: xx-large;
-  color: var(--secondary-hover);
+  color: var(--secondary);
   margin-top: 15px;
 }
 .error-fetch {
   color: red !important;
 }
 
-/* Movies list */
-/* .movies-list {
-  display: grid;
-  grid-template-columns: 300px 300px 300px;
-  max-width: 90%;
-  margin: 30px auto;
-  justify-content: space-evenly;
-  row-gap: 20px;
-} */
+/* Movies List */
+.wrap-container {
+  margin-top: 25px;
+}
 .movies-list {
   display: flex;
   overflow: auto;
-  margin: 20px 0px;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
 }
 .movies-list a {
   text-decoration: none;
@@ -155,18 +203,11 @@ header nav a:hover {
 .movie-card {
   display: flex;
   flex-direction: column;
-  /* border: 10px groove gray;
-  box-shadow: 2px 2px 3px #333;
-  background-color: var(--primary); */
-  width: 250px;
-  align-items: center;
 }
 .movie-card:hover {
   cursor: pointer;
-  box-shadow: 3px 3px 8px #333;
 }
 .movie-card img {
-  border: 1px solid #333;
   border-radius: 12px;
   margin: 5px 0px;
 }
