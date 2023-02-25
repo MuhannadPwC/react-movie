@@ -8,7 +8,7 @@ const Home = () => {
     isLoading,
     error,
   } = FetchPopular(
-    "https://api.themoviedb.org/3/movie/popular?api_key=0557b758465b10519557edb25fc53d86&language=en-US&page=1"
+    "https://api.themoviedb.org/3/movie/popular?api_key=0557b758465b10519557edb25fc53d86&language=en-US"
   );
 
   return (

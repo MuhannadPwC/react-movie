@@ -10,7 +10,7 @@ const MoviesCard = ({ movie }) => {
         />
         <h3 className="movie-title">{movie.title}</h3>
         <p className="movie-summary">
-          {movie.overview.slice(0, 75).padEnd(80, ".")}
+          {movie.overview.slice(0, 40).padEnd(45, ".")}
         </p>
       </Link>
     </div>
