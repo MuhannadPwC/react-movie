@@ -5,10 +5,13 @@
   --secondary: #01b4e4;
   --bg-color: 3, 37, 65;
 }
-
+#root {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: "Source Sans Pro", Arial, sans-serif;
+  height: 100vh;
 }
 * {
   margin: 0;
@@ -16,6 +19,11 @@ body {
 a {
   text-decoration: none;
   color: black;
+}
+.rootlayout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 /* Buttons */
@@ -78,7 +86,7 @@ footer {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: auto;
   padding-top: 44px;
   padding-bottom: 30px;
 }
@@ -113,7 +121,7 @@ footer {
   font-size: 32px;
   color: white;
 }
-/* Search Form */
+/* Homepage Search Form */
 .homepage {
   max-width: 1400px;
   margin: auto;
@@ -134,7 +142,7 @@ label {
   height: 26px;
   line-height: 26px;
   font-size: 1.1em;
-  width: 96%;
+  width: 95%;
 }
 .homepage .search-btn {
   display: inline-flex;
@@ -190,6 +198,7 @@ label {
 .wrap-container {
   margin-top: 25px;
   margin-left: 26px;
+  margin-bottom: 25px;
   position: relative;
   top: 0;
   left: 0;
@@ -228,6 +237,10 @@ label {
   position: relative;
   top: 0;
   left: 0;
+  max-width: 200px;
+}
+.image {
+  width: 150px;
 }
 .movie-card img {
   border-radius: 12px;
@@ -305,7 +318,49 @@ label {
   font-size: medium;
   text-align: center;
 }
+.movie-card .movie-title:hover {
+  color: var(--secondary);
+}
 .movie-card .movie-summary {
   font-size: small;
   padding: 5px;
+}
+
+/* Movies Page */
+.movies-page {
+  max-width: 1200px;
+  margin: auto;
+}
+.movie-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+  margin: 10px 0;
+}
+.movie-panel .image,
+.movie-panel .image img {
+  width: 150px;
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 8px;
+  border: 1px solid;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  border: 1px solid rgba(211, 211, 211, 1);
+  background-color: #fff;
+}
+.movie-panel {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  max-width: calc(100vw - 400px);
+  height: 225px;
+}
+.panel-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

@@ -1,4 +1,7 @@
+import { Form } from "react-router-dom";
+
 const SearchForm = () => {
+
   return (
     <div className="searchform">
       <div className="flex-container">
@@ -10,16 +13,17 @@ const SearchForm = () => {
             </h2>
           </div>
           <div>
-            <form>
+            <Form method="get" action="/movies">
               <label>
                 <input
                   type="text"
                   name="search"
                   placeholder="search for movie..."
+                  autoComplete="off"
                 />
               </label>
               <button className="search-btn">Search</button>
-            </form>
+            </Form>
           </div>
         </div>
       </div>
@@ -28,3 +32,4 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
+

@@ -3,7 +3,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 
 const MoviesCard = ({ movie }) => {
-  const percentage = movie.vote_average * 10;
+  const percentage = Math.round(movie.vote_average * 10);
   let color = "#008631";
   if (percentage <= 25) {color = "#ff0000"}
   if (percentage > 25 && percentage < 50) {color = '#FF7518'}
@@ -48,7 +48,7 @@ const MoviesCard = ({ movie }) => {
           />
         </div>
       </div>
-      <Link to={`movies/${movie.id}`}>
+      <Link to={`/movies/${movie.id}`}>
         <h3 className="movie-title">{movie.title}</h3>
       </Link>
       <p className="movie-summary">
