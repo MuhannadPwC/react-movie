@@ -18,7 +18,7 @@ const SearchForm = () => {
                   placeholder="search for movie..."
                 />
               </label>
-              <button>Search</button>
+              <button className="search-btn">Search</button>
             </form>
           </div>
         </div>

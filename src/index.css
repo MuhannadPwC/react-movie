@@ -136,7 +136,7 @@ label {
   font-size: 1.1em;
   width: 96%;
 }
-.homepage button {
+.homepage .search-btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -154,7 +154,7 @@ label {
   right: -1px;
   color: #fff;
 }
-.homepage button:hover {
+.homepage .search-btn:hover {
   cursor: pointer;
   color: #333;
 }
@@ -223,17 +223,89 @@ label {
 .movie-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 5px;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 .movie-card img {
   border-radius: 12px;
   width: 150px;
 }
-.movie-card h3 {
+.progress-bar {
+  position: absolute;
+  bottom: 5.5pc;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+}
+.options {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+}
+.glyphs {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2em;
+  min-height: 2em;
+  width: 2em;
+  height: 2em;
+  line-height: inherit;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: inherit;
+  box-sizing: border-box;
+}
+.dots {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-947-circle-more-white-4c440dfc1b0e626c70f4853dbbce9c4d1f2c5d8f3e05a7d3df47881cbd816adf.svg");
+}
+.dropped-options {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  background-color: white;
+}
+.options:hover .dropped-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.group {
+  display: inline-flex;
+  justify-content: flex-start;
+}
+.save {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-696996f38fbacdcebe327e9465c09386a177a5b7b93ac6665471ccbb239d9af0.svg");
+}
+.heart {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-28c7c34a7fef8b646f2f0c4c610f4a93bdce0b6cc24deea49674eb30f9961109.svg");
+}
+.watch-btn,
+.fav-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.movie-card .movie-title {
   font-size: medium;
   text-align: center;
 }
-.movie-card p {
+.movie-card .movie-summary {
   font-size: small;
   padding: 5px;
 }
