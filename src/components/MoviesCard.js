@@ -16,6 +16,7 @@ const MoviesCard = ({ movie }) => {
         <img
           src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
           alt={movie.title}
+          onError={(e) => {e.currentTarget.src = "/nullImage.jpeg"}}
         />
         <div className="options">
           <div className="glyphs dots"></div>

@@ -61,7 +61,7 @@ header nav {
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
-  gap: 80px;
+  gap: 70px;
 }
 .lng-btn {
   color: white;
@@ -327,9 +327,22 @@ label {
 }
 
 /* Movies Page */
+.movie-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  color: var(--secondary);
+  font-size: xx-large;
+}
 .movies-page {
   max-width: 1200px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 650px;
 }
 .movie-grid {
   display: flex;
@@ -342,6 +355,27 @@ label {
 .movie-panel .image,
 .movie-panel .image img {
   width: 150px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.movie-panel .image {
+  display: flex;
+  align-items: center;
+}
+.movie-panel::after {
+  content: "";
+  width: 150px;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #fff 100%
+  );
+  will-change: opacity;
+  pointer-events: none;
 }
 .flex-wrap {
   display: flex;
@@ -359,9 +393,104 @@ label {
   width: calc(100vw - 37vw);
   min-width: calc(100vw - 37vw);
   height: 225px;
+  position: relative;
 }
 .panel-details {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.panel-details .summary {
+  overflow: hidden;
+  margin-top: 20px;
+}
+.panel-details a {
+  font-size: 20px;
+}
+
+/* Filter Search */
+
+/* Pagination */
+.pagenum-container {
+  margin-top: auto;
+  margin-bottom: 2pc;
+  width: 50%;
+  display: flex;
   justify-content: space-evenly;
+}
+
+/* Movie Details */
+.movie-details {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-width: 600px;
+  height: calc(100vh / 2);
+  min-height: 300px;
+  display: flex;
+  padding-bottom: 10px;
+}
+.details-container {
+  min-width: calc(100vw / 2);
+  width: 1000px;
+  height: 100%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+}
+.details-container .image,
+.details-container img {
+  width: 300px;
+  min-width: 300px;
+  border-radius: 8px;
+}
+.movie-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  gap: 40px;
+  align-items: flex-start;
+  color: aliceblue;
+}
+.flex {
+  display: flex;
+  max-height: 100px;
+  min-height: 60px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 100px;
+  width: 400px;
+  max-width: 400px;
+  min-width: calc(100vw / 3);
+}
+.flex button {
+  border: none;
+  background-color: var(--secondary);
+  cursor: pointer;
+  padding: 12px;
+  clip-path: circle(48.2% at 50% 50%);
+}
+.heart-white {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-white-28d2cc2d6418c5047efcfd2438bfc5d109192671263c270993c05f130cc4584e.svg");
+}
+.save-white {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-white-432e98d550b7e4c80b06272c49475b0db85a60f6fae450420713004b3c9d3ffd.svg");
+}
+.save-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.overview {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
 }

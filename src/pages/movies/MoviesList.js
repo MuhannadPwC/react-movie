@@ -1,21 +1,42 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import FilterSearch from "../../components/FilterSearch";
 import MoviePanel from "../../components/MoviePanel";
 
 const MoviesList = () => {
-
   const movies = useLoaderData().results;
-  console.log(movies);
+  const error =
+    movies.length === 0 ? "No Movies were found, try searching again" : null;
 
   return (
-    <div className="movies-page">
-      {movies && (
-        <div className="movie-grid">
-          {movies.map((movie) => (
-            <MoviePanel movie={movie} key={movie.id} />
-          ))}
-        </div>
-      )}
-    </div>
+    <>
+      <FilterSearch />
+      <div className="movies-page">
+        {error && <div className="movie-error">{error}</div>}
+        {movies && (
+          <div className="movie-grid">
+            {movies &&
+              movies.map((movie) => (
+                <MoviePanel movie={movie} key={movie.id} />
+              ))}
+          </div>
+        )}
+        {!error && (
+          <div className="pagenum-container">
+            <div className="back-btn">
+              <button>Back</button>
+            </div>
+            <div className="page-number">
+              <Link>1</Link>
+              <Link>2</Link>
+              <Link>3</Link>
+            </div>
+            <div className="forward-btn">
+              <button>Forward</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
