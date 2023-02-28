@@ -8,9 +8,7 @@ const Home = () => {
     data: popular,
     isLoading,
     error,
-  } = FetchPopular(
-    `${url}/movie/popular?api_key=${api_key}&language=en-US`
-  );
+  } = FetchPopular(`${url}/movie/popular?api_key=${api_key}&language=en-US`);
 
   return (
     <div className="homepage">

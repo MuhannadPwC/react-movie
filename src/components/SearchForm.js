@@ -1,7 +1,6 @@
 import { Form } from "react-router-dom";
 
 const SearchForm = () => {
-
   return (
     <div className="searchform">
       <div className="flex-container">
@@ -32,4 +31,3 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
-
