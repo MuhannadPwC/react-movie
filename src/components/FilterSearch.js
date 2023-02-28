@@ -2,23 +2,41 @@ import { Form } from "react-router-dom";
 
 const FilterSearch = () => {
   return (
-    <div className="filter-search">
-      <Form method="GET" action="/movies">
+    <Form method="GET" action="/movies">
+      <div className="filter-search">
         <div className="search-bar">
-          <input type="text" name="search" id="search" placeholder="Search for movie..." />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            autoComplete="off"
+            placeholder="Search for movie..."
+          />
           <button>Search</button>
         </div>
         <div className="filters">
           <select name="genre" id="genre" placeholder="Genre">
-            <option value="">Action</option>
-            <option value="">Drama</option>
-            <option value="">Comedy</option>
+            <option value="action">Action</option>
+            <option value="drama">Drama</option>
+            <option value="comedy">Comedy</option>
           </select>
-          <input type="text" name="year" id="year" placeholder="Enter Year..."/>
-          <input type="text" name="rating" id="rating" placeholder="Enter rating..."/>
+          <input
+            type="text"
+            name="year"
+            id="year"
+            placeholder="Enter Year..."
+            autoComplete="off"
+          />
+          <input
+            type="text"
+            name="rating"
+            id="rating"
+            placeholder="Enter rating..."
+            autoComplete="off"
+          />
         </div>
-      </Form>
-    </div>
+      </div>
+    </Form>
   );
 };
 

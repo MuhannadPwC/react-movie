@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import FilterSearch from "../../components/FilterSearch";
 import MoviePanel from "../../components/MoviePanel";
+import { url } from "../../Global";
 
 const MoviesList = () => {
   const movies = useLoaderData().results;
@@ -23,15 +24,13 @@ const MoviesList = () => {
         {!error && (
           <div className="pagenum-container">
             <div className="back-btn">
-              <button>Back</button>
+              <button>Prev</button>
             </div>
             <div className="page-number">
               <Link>1</Link>
-              <Link>2</Link>
-              <Link>3</Link>
             </div>
             <div className="forward-btn">
-              <button>Forward</button>
+              <button>Next</button>
             </div>
           </div>
         )}
@@ -43,9 +42,15 @@ const MoviesList = () => {
 export default MoviesList;
 
 export const moviesListLoader = async ({ request }) => {
-  const url = new URL(request.url);
-  const searchTerm = url.searchParams.get("search");
-  const response = await fetch(`
-  https://api.themoviedb.org/3/search/movie?api_key=0557b758465b10519557edb25fc53d86&language=en-US&query=${searchTerm}`);
-  return response;
+  const reqUrl = new URL(request.url);
+  const searchTerm = reqUrl.searchParams.get("search");
+  if (searchTerm) {
+    const response = await fetch(`
+    ${url}/search/movie?api_key=0557b758465b10519557edb25fc53d86&language=en-US&query=${searchTerm}`);
+    return response.json();
+  } else {
+    const response = await fetch(`
+    ${url}/search/movie?api_key=0557b758465b10519557edb25fc53d86&language=en-US&query=`);
+    return response.json();
+  }
 };

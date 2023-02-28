@@ -1,6 +1,7 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useLoaderData } from "react-router-dom";
+import { api_key, url } from "../../Global";
 
 const MovieDetails = () => {
   const movie = useLoaderData();
@@ -22,8 +23,6 @@ const MovieDetails = () => {
   if (percentage >= 75 && percentage < 90) {
     color = "#00c04b";
   }
-
-  console.log(movie);
 
   return (
     <div
@@ -102,7 +101,7 @@ export default MovieDetails;
 export const movieDetailsLoader = async ({ params }) => {
   const { id } = params;
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=0557b758465b10519557edb25fc53d86&language=en-US`
+    `${url}/movie/${id}?api_key=${api_key}&language=en-US`
   );
 
   return res.json();

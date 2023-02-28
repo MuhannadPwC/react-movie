@@ -1,6 +1,7 @@
 import MoviesCard from "../components/MoviesCard";
 import SearchForm from "../components/SearchForm";
 import FetchPopular from "../Fetch/FetchPopular";
+import { api_key, url } from "../Global";
 
 const Home = () => {
   const {
@@ -8,7 +9,7 @@ const Home = () => {
     isLoading,
     error,
   } = FetchPopular(
-    "https://api.themoviedb.org/3/movie/popular?api_key=0557b758465b10519557edb25fc53d86&language=en-US"
+    `${url}/movie/popular?api_key=${api_key}&language=en-US`
   );
 
   return (

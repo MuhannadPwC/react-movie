@@ -54,7 +54,8 @@ header nav {
   margin: 0 auto;
   height: 60px;
   padding: 0px 100px;
-  background-color: rgb(3, 37, 65);
+  background-color: var(--primary);
+  border-bottom: 1px solid var(--primary);
 }
 .flexbox {
   display: flex;
@@ -126,7 +127,7 @@ footer {
   max-width: 1400px;
   margin: auto;
 }
-.homepage form {
+.searchform form {
   display: flex;
   position: relative;
   top: 0;
@@ -135,7 +136,7 @@ footer {
 label {
   width: 100%;
 }
-.homepage form input[type="text"] {
+.searchform form input[type="text"] {
   padding: 8px;
   border: none;
   border-radius: 30px;
@@ -144,7 +145,7 @@ label {
   font-size: 1.1em;
   width: 95%;
 }
-.homepage .search-btn {
+.searchform .search-btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -162,7 +163,7 @@ label {
   right: -1px;
   color: #fff;
 }
-.homepage .search-btn:hover {
+.searchform .search-btn:hover {
   cursor: pointer;
   color: #333;
 }
@@ -410,10 +411,68 @@ label {
 }
 
 /* Filter Search */
+.filter-search {
+  display: flex;
+  flex-direction: column;
+}
+.search-bar {
+  width: 100%;
+  position: relative;
+}
+.search-bar input[type="text"] {
+  width: 99%;
+  height: 34px;
+  border-bottom-left-radius: 8px;
+  font-size: 1.1em;
+}
+.search-bar button {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  z-index: 1;
+  width: 140px;
+  height: 41px;
+  border-bottom-right-radius: 8px;
+  border-bottom: 2px solid #333;
+  padding: 12px;
+  text-align: center;
+  background-image: linear-gradient(
+    to bottom,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    #00ddff 100%
+  );
+  color: white;
+}
+.search-bar button:hover {
+  cursor: pointer;
+  color: var(--bg-color);
+}
+.filters {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0px;
+  height: 30px;
+  gap: 20px;
+}
+.filters select {
+  min-width: 100px;
+  width: 100px;
+  border-radius: 8px;
+  min-height: 25px;
+  border: 1px solid;
+}
+.filters input[type=text] {
+  border-radius: 8px;
+  border: 1px solid;
+  min-height: 25px;
+  min-width: 100px;
+  width: 100px;
+}
 
 /* Pagination */
 .pagenum-container {
-  margin-top: auto;
+  margin-top: 2pc;
   margin-bottom: 2pc;
   width: 50%;
   display: flex;
@@ -490,7 +549,7 @@ label {
   gap: 20px;
 }
 .overview {
- display: flex;
- flex-direction: column;
- gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
