@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Form } from "react-router-dom";
 
 const SearchForm = () => {
+  const [search, setSearch] = useState();
 
   return (
     <div className="searchform">
@@ -13,6 +15,8 @@ const SearchForm = () => {
               className="search"
               placeholder="search for movie..."
               autoComplete="off"
+              value={search}
+              onChange={e => {setSearch(e.target.value)}}
             />
           </label>
           <button className="search-btn">Search</button>
