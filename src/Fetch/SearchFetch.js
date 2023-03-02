@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { api_key, url } from "../Global";
 
-const SearchFetch = (search, year = '', page = 1) => {
+const SearchFetch = (url) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
@@ -10,7 +9,7 @@ const SearchFetch = (search, year = '', page = 1) => {
   useEffect(() => {
     const abort = new AbortController();
 
-    fetch(`${url}/search/movie?api_key=${api_key}&language=en-US&query=${search}&page=${page}&year=${year}`)
+    fetch(url)
     .then((res) => {
       if(!res.ok) {
         throw Error('Data was not obtained');
@@ -32,7 +31,7 @@ const SearchFetch = (search, year = '', page = 1) => {
     })
 
     return () => abort.abort;
-  });
+  }, [url]);
 
   return { data, error, isLoading };
 }

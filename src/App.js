@@ -4,7 +4,6 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { searchAction } from "./components/SearchForm";
 import MoviesLayout from "./layouts/MoviesLayout";
 
 // Layouts
@@ -21,7 +20,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="/movies" element={<MoviesLayout />} errorElement={<NotFound />}>
-        <Route index element={<MoviesList />} action={searchAction}/>
+        <Route index element={<MoviesList />} />
         <Route path=":id" element={<MovieDetails />} loader={movieDetailsLoader} />
       </Route>
 

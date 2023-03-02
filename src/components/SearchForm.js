@@ -17,8 +17,8 @@ const SearchForm = () => {
           </label>
           <button className="search-btn">Search</button>
           <div className="filters">
-            <select name="genre" id="genre" className="genre">
-              <option disabled selected value=''>select a genre</option>
+            <select name="genre" id="genre" className="genre" defaultValue="">
+              <option disabled value=''>select a genre</option>
               <option value="28">Action</option>
               <option value="18">Drama</option>
               <option value="35">Comedy</option>
@@ -32,12 +32,14 @@ const SearchForm = () => {
               autoComplete="off"
             />
             <input
-              type="text"
+              type="number"
               name="rating"
               id="rating"
               className="rating"
               placeholder="Enter rating..."
               autoComplete="off"
+              max={10}
+              min={0}
             />
           </div>
         </Form>
@@ -47,17 +49,3 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
-
-export const searchAction = async ({ request }) => {
-  const data = await request.formData();
-
-  const submission = {
-    search: data.get('search'),
-    genre: data.get('genre'),
-    year: data.get('year'),
-    rating: data.get('rating')
-  }
-  console.log(submission);
-
-  return submission;
-}

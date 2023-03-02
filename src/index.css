@@ -396,7 +396,7 @@ label {
   flex-direction: row;
   gap: 10px;
   width: calc(100vw - 37vw);
-  min-width: calc(100vw - 37vw);
+  min-width: calc(100vw - 34vw);
   height: 225px;
   position: relative;
 }
@@ -435,23 +435,24 @@ label {
 }
 .filters {
   display: flex;
-  justify-content: center;
-  margin: 12px 0px;
+  justify-content: space-evenly;
+  min-width: 50%;
+  width: 50%;
+  margin: 12px auto;
   height: 30px;
-  gap: 20px;
 }
 .filters select {
   min-width: 115px;
   width: 115px;
   border-radius: 8px;
-  min-height: 25px;
+  min-height: 30px;
   border: 1px solid;
 }
 .filters input#year.year,
 .filters input#rating.rating {
   border-radius: 8px;
   border: 1px solid;
-  min-height: 25px;
+  min-height: 30px;
   min-width: 115px;
   width: 115px;
   font-size: 14px;
@@ -494,9 +495,17 @@ label {
   color: rgba(25, 25, 25, 0.644);
   cursor: pointer;
 }
-.pagenum-container a.active {
-  text-decoration: underline;
-  color: var(--secondary);
+.prev-btn button:disabled,
+.next-btn button:disabled {
+  opacity: 0.4;
+  cursor: auto;
+  color: white;
+}
+.page-number {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 150px;
 }
 
 /* Movie Details */
