@@ -23,6 +23,27 @@ const MovieDetails = () => {
   if (percentage >= 75 && percentage < 90) {
     color = "#00c04b";
   }
+  const saved = localStorage.getItem(`${movie.id}-saved`);
+  const hearted = localStorage.getItem(`${movie.id}-hearted`);
+
+  const handleSave = (e) => {
+    if (!saved) {
+      e.target.className = "glyphs save-red";
+      localStorage.setItem(`${movie.id}-saved`, movie.id);
+    } else {
+      e.target.className = "glyphs save-white";
+      localStorage.removeItem(`${movie.id}-saved`);
+    }
+  };
+  const handleFav = (e) => {
+    if (!hearted) {
+      e.target.className = "glyphs heart-red";
+      localStorage.setItem(`${movie.id}-hearted`, movie.id);
+    } else {
+      e.target.className = "glyphs heart-white";
+      localStorage.removeItem(`${movie.id}-hearted`);
+    }
+  };
 
   return (
     <div
@@ -73,12 +94,18 @@ const MovieDetails = () => {
               />
             </div>
             <div className="save-btns">
-              <button>
-                <span className="glyphs save-white"></span>
-              </button>
-              <button>
-                <span className="glyphs heart-white"></span>
-              </button>
+              {saved && (
+                <span className="glyphs save-red" onClick={handleSave}></span>
+              )}
+              {!saved && (
+                <span className="glyphs save-white" onClick={handleSave}></span>
+              )}
+              {hearted && (
+                <span className="glyphs heart-red" onClick={handleFav}></span>
+              )}
+              {!hearted && (
+                <span className="glyphs heart-white" onClick={handleFav}></span>
+              )}
             </div>
           </div>
           <div className="overview">

@@ -558,18 +558,26 @@ label {
   max-width: 400px;
   min-width: calc(100vw / 3);
 }
-.flex button {
+.save-btns span {
   border: none;
   background-color: var(--secondary);
   cursor: pointer;
+  width: 40px;
+  height: 40px;
   padding: 12px;
-  clip-path: circle(48.2% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
 }
 .heart-white {
   background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-white-28d2cc2d6418c5047efcfd2438bfc5d109192671263c270993c05f130cc4584e.svg");
 }
 .save-white {
   background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-white-432e98d550b7e4c80b06272c49475b0db85a60f6fae450420713004b3c9d3ffd.svg");
+}
+.heart-red {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-selected-7d05ac729b7f41ab22db83dba29b73f81da2c0a2b1c5fc938fb333d34adf965e.svg");
+}
+.save-red {
+  background-image: url("https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-selected-ddcb9a1fcb04650d6879314313b71e397521c2e41e07b1405b30d4244deb52f8.svg");
 }
 .save-btns {
   display: flex;

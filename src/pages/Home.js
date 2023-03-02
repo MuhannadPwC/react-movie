@@ -9,7 +9,6 @@ const Home = () => {
     isLoading,
     error,
   } = FetchPopular(`${url}/movie/popular?api_key=${api_key}&language=en-US`);
-  console.log(popular);
 
   return (
     <div className="homepage">
