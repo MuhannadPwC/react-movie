@@ -1,17 +1,20 @@
-import { Link, useLoaderData } from "react-router-dom";
-import FilterSearch from "../../components/FilterSearch";
+import { Link, useActionData, useLoaderData } from "react-router-dom";
 import MoviePanel from "../../components/MoviePanel";
+import SearchForm from "../../components/SearchForm";
 import { url } from "../../Global";
 
 const MoviesList = () => {
-  const movies = useLoaderData().results;
-  const error =
-    movies.length === 0 ? "No Movies were found, try searching again" : null;
+  // const movies = useLoaderData().results;
+  // const error =
+  //   movies.length === 0 ? "No Movies were found, try searching again" : null;
+  const data = useActionData();
 
   return (
     <>
-      <FilterSearch />
-      <div className="movies-page">
+      <div className="filter-search">
+        <SearchForm />
+      </div>
+      {/* <div className="movies-page">
         {error && <div className="movie-error">{error}</div>}
         {movies && (
           <div className="movie-grid">
@@ -23,25 +26,25 @@ const MoviesList = () => {
         )}
         {!error && (
           <div className="pagenum-container">
-            <div className="back-btn">
+            <div className="prev-btn">
               <button>Prev</button>
             </div>
             <div className="page-number">
-              <Link>1</Link>
+              <Link to="/search">1</Link>
             </div>
-            <div className="forward-btn">
+            <div className="next-btn">
               <button>Next</button>
             </div>
           </div>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
 
 export default MoviesList;
 
-export const moviesListLoader = async ({ request }) => {
+/* export const moviesListLoader = async ({ request }) => {
   const reqUrl = new URL(request.url);
   const searchTerm = reqUrl.searchParams.get("search");
   if (searchTerm) {
@@ -53,4 +56,4 @@ export const moviesListLoader = async ({ request }) => {
     ${url}/search/movie?api_key=0557b758465b10519557edb25fc53d86&language=en-US&query=`);
     return response.json();
   }
-};
+}; */

@@ -12,7 +12,17 @@ const Home = () => {
 
   return (
     <div className="homepage">
-      <SearchForm />
+      <div className="flex-container">
+        <div className="title">
+          <div>
+            <h1>Welcome.</h1>
+            <h2>
+              Millions of movies, TV shows and people to discover. Explore now.
+            </h2>
+          </div>
+          <SearchForm />
+        </div>
+      </div>
       <div className="wrap-container">
         <h1>Popular Movies:</h1>
         {error && <div className="error-fetch">{error}</div>}
