@@ -516,7 +516,7 @@ label {
   width: 100%;
   min-width: 600px;
   height: calc(100vh / 2);
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   padding-bottom: 10px;
 }
@@ -533,8 +533,8 @@ label {
 }
 .details-container .image,
 .details-container img {
-  width: 300px;
-  min-width: 300px;
+  width: 250px;
+  min-width: 250px;
   border-radius: 8px;
 }
 .movie-elements {
