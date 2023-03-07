@@ -19,9 +19,13 @@ const MoviesList = () => {
 
   if (genre !== null) {
     movies = movies.filter((movie) => {
-      return movie.genre_ids.map((genreId) => {
-        return genreId === parseInt(genre) ? true : false;
-      });
+      let flag = false;
+      movie.genre_ids.forEach(genreId => {
+        if (genreId === parseInt(genre)) {
+          flag = true
+        }
+      })
+      return flag;
     });
   }
   if (rating !== "") {
@@ -39,7 +43,7 @@ const MoviesList = () => {
       setPage(page + 1);
       window.scrollTo(0, 0);
     } else {
-      return
+      return;
     }
   };
   const handlePrev = () => {
@@ -47,14 +51,20 @@ const MoviesList = () => {
       setPage(page - 1);
       window.scrollTo(0, 0);
     } else {
-      return
+      return;
     }
   };
+  console.log(movies);
 
   return (
     <>
       <div className="filter-search">
-        <SearchForm searchTerm={search}/>
+        <SearchForm
+          searchTerm={search}
+          searchGenre={genre}
+          searchRating={rating}
+          searchYear={year}
+        />
       </div>
       <div className="movies-page" id="top">
         {err && <div className="movie-error">{err}</div>}
