@@ -54,7 +54,7 @@ const MoviesList = () => {
   return (
     <>
       <div className="filter-search">
-        <SearchForm />
+        <SearchForm searchTerm={search}/>
       </div>
       <div className="movies-page" id="top">
         {err && <div className="movie-error">{err}</div>}

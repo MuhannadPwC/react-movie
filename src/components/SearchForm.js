@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Form } from "react-router-dom";
 
-const SearchForm = () => {
-  const [search, setSearch] = useState();
+const SearchForm = ({ searchTerm }) => {
+  searchTerm = searchTerm ? searchTerm : '';
+  const [search, setSearch] = useState(searchTerm);
 
   return (
     <div className="searchform">
