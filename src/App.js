@@ -8,12 +8,15 @@ import MoviesLayout from "./layouts/MoviesLayout";
 
 // Layouts
 import RootLayout from "./layouts/RootLayout";
+import UserListLayout from "./layouts/UserListLayout";
 
 // Pages
 import Home from "./pages/Home";
 import MovieDetails, { movieDetailsLoader } from "./pages/movies/MovieDetails";
 import MoviesList from "./pages/movies/MoviesList";
 import NotFound from "./pages/NotFound";
+import Favourites from "./pages/user-list/Favourites";
+import WatchLater from "./pages/user-list/WatchLater";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +25,10 @@ const router = createBrowserRouter(
       <Route path="/movies" element={<MoviesLayout />} errorElement={<NotFound />}>
         <Route index element={<MoviesList />} />
         <Route path=":id" element={<MovieDetails />} loader={movieDetailsLoader} />
+      </Route>
+      <Route path="/userlists" element={<UserListLayout />}>
+        <Route path="watchlater" element={<WatchLater />} />
+        <Route path="favourites" element={<Favourites />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

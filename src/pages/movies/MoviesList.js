@@ -54,7 +54,6 @@ const MoviesList = () => {
       return;
     }
   };
-  console.log(movies);
 
   return (
     <>

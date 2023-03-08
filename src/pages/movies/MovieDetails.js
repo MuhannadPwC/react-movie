@@ -1,10 +1,15 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoaderData } from "react-router-dom";
+import { addItems, selectFavourite, selectWatchLater } from "../../features/WatchSlice";
 import { api_key, url } from "../../Global";
 
 const MovieDetails = () => {
   const movie = useLoaderData();
+  const save = useSelector(selectWatchLater);
+  const heart = useSelector(selectFavourite);
+  const dispatch = useDispatch();
   const date = new Date(movie.release_date);
   const genres = movie.genres.map((genre) => {
     return genre.name;
@@ -23,27 +28,12 @@ const MovieDetails = () => {
   if (percentage >= 75 && percentage < 90) {
     color = "#00c04b";
   }
-  const saved = localStorage.getItem(`${movie.id}-saved`);
-  const hearted = localStorage.getItem(`${movie.id}-hearted`);
+  const saved = () => save.some(mv => mv.id === movie.id);
+  const hearted = () => heart.some(mv => mv.id === movie.id);
 
-  const handleSave = (e) => {
-    if (!saved) {
-      e.target.className = "glyphs save-red";
-      localStorage.setItem(`${movie.id}-saved`, movie.id);
-    } else {
-      e.target.className = "glyphs save-white";
-      localStorage.removeItem(`${movie.id}-saved`);
-    }
-  };
-  const handleFav = (e) => {
-    if (!hearted) {
-      e.target.className = "glyphs heart-red";
-      localStorage.setItem(`${movie.id}-hearted`, movie.id);
-    } else {
-      e.target.className = "glyphs heart-white";
-      localStorage.removeItem(`${movie.id}-hearted`);
-    }
-  };
+  const handleStore = (key) => {
+    dispatch(addItems({ key, movie }))
+  }
 
   return (
     <div
@@ -94,17 +84,17 @@ const MovieDetails = () => {
               />
             </div>
             <div className="save-btns">
-              {saved && (
-                <span className="glyphs save-red" onClick={handleSave}></span>
+              {saved() && (
+                <span className="glyphs save-red" onClick={() => handleStore('save')}></span>
               )}
-              {!saved && (
-                <span className="glyphs save-white" onClick={handleSave}></span>
+              {!saved() && (
+                <span className="glyphs save-white" onClick={() => handleStore('save')}></span>
               )}
-              {hearted && (
-                <span className="glyphs heart-red" onClick={handleFav}></span>
+              {hearted() && (
+                <span className="glyphs heart-red" onClick={() => handleStore('heart')}></span>
               )}
-              {!hearted && (
-                <span className="glyphs heart-white" onClick={handleFav}></span>
+              {!hearted() && (
+                <span className="glyphs heart-white" onClick={() => handleStore('heart')}></span>
               )}
             </div>
           </div>

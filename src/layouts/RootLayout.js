@@ -20,6 +20,7 @@ const RootLayout = () => {
           </div>
           <div className="flexbox">
             <button className="lng-btn">EN</button>
+            <NavLink to="userlists"><span className="glyphs save-white"></span></NavLink>
             <NavLink to="movies">
               <img
                 src={
