@@ -15,6 +15,7 @@ const WatchLater = () => {
       {save.length > 0 && (
         <div className="grid-view">
           {save.map((movie) => (
+            <MoviesCard movie={movie} key={movie.id} />
           ))}
         </div>
       )}
