@@ -22,7 +22,7 @@ mongoose
   .then(() => {
     console.log('Connected to the database');
     app.listen(port, () => {
-      console.log(`Listening on port ${port}`);
+      console.log(`Listening on localhost:${port}`);
     });
   })
   .catch((err) => {

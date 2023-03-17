@@ -1,6 +1,15 @@
 import { NavLink, Outlet, ScrollRestoration } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
 
 const RootLayout = () => {
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div className="rootlayout">
       <ScrollRestoration />
@@ -19,8 +28,9 @@ const RootLayout = () => {
             </NavLink>
           </div>
           <div className="flexbox">
-            <button className="lng-btn">EN</button>
-            <NavLink to="userlists"><span className="glyphs save-white"></span></NavLink>
+            <NavLink to="userlists">
+              <span className="glyphs save-white"></span>
+            </NavLink>
             <NavLink to="movies">
               <img
                 src={
@@ -31,6 +41,13 @@ const RootLayout = () => {
                 height="50"
               />
             </NavLink>
+            {user && <button onClick={handleLogout}>Logout</button>}
+            {!user && (
+              <div>
+                <NavLink to="login">Login</NavLink>
+                <NavLink to="signup">Sign Up</NavLink>
+              </div>
+            )}
           </div>
         </nav>
       </header>
