@@ -9,8 +9,8 @@ import {
 } from "../features/WatchSlice";
 
 const MoviesCard = ({ movie }) => {
-  const save = useSelector(selectWatchLater);
-  const heart = useSelector(selectFavourite);
+  const watchlater = useSelector(selectWatchLater);
+  const favourites = useSelector(selectFavourite);
   const dispatch = useDispatch();
   const percentage = Math.round(movie.vote_average * 10);
   let color = "#008631";
@@ -26,8 +26,18 @@ const MoviesCard = ({ movie }) => {
   if (percentage >= 75 && percentage < 90) {
     color = "#00c04b";
   }
-  const saved = () => save.some((mv) => mv.id === movie.id);
-  const hearted = () => heart.some((mv) => mv.id === movie.id);
+  const saved =
+    watchlater.length > 0
+      ? () => watchlater.some((mv) => mv.id === movie.id)
+      : () => {
+          return false;
+        };
+  const hearted =
+    favourites.length > 0
+      ? () => favourites.some((mv) => mv.id === movie.id)
+      : () => {
+          return false;
+        };
   const handleStore = (key) => {
     dispatch(addItems({ key, movie }));
   };
@@ -48,7 +58,10 @@ const MoviesCard = ({ movie }) => {
             <div className="group">
               {saved() && <span className="glyphs save-red"></span>}
               {!saved() && <span className="glyphs save"></span>}
-              <button className="watch-btn" onClick={() => handleStore("save")}>
+              <button
+                className="watch-btn"
+                onClick={() => handleStore("watchlater")}
+              >
                 Watch Later
               </button>
             </div>
@@ -56,7 +69,10 @@ const MoviesCard = ({ movie }) => {
             <div className="group">
               {hearted() && <span className="glyphs heart-red"></span>}
               {!hearted() && <span className="glyphs heart"></span>}
-              <button className="fav-btn" onClick={() => handleStore("heart")}>
+              <button
+                className="fav-btn"
+                onClick={() => handleStore("favourites")}
+              >
                 Favorite
               </button>
             </div>

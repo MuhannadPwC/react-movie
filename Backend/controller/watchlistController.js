@@ -16,15 +16,16 @@ const removeFromList = (list, movie) => {
 // WatchLater
 // GET WatchLater list for user
 const getWatchlater = async (req, res) => {
-  const { email } = req.body;
+  console.log(req.user);
+  const { _id } = req.user;
 
-  const user = await User.findOne({ email });
+  const user = await User.findById(_id);
   const watchlater = user.watchlater;
 
   if (watchlater.length === 0) {
     return res
       .status(400)
-      .json({ error: "This user does not have a watchlater list" });
+      .json({ watchlater });
   }
 
   return res.status(200).json({ watchlater });
@@ -40,21 +41,28 @@ const postWatchlater = async (req, res) => {
   if (isStored(watchlater, movie)) {
     return res
       .status(200)
-      .json({ msg: "Movie is already in watch later list" });
+      .json({ msg: "Movie is already in watch later list", success: false });
   }
 
   watchlater.push(movie);
   user.watchlater = watchlater;
   user.save();
-  return res.status(200).json({ msg: "Movie was added to watch later list" });
+  return res
+    .status(200)
+    .json({ msg: "Movie was added to watch later list", success: true });
 };
 
 // PATCH remove from watch later
 const patchWatchlater = async (req, res) => {
-  const { id, movie } = req.body;
+  const { email, movie } = req.body;
 
-  const user = await User.findById(id);
+  const user = await User.findOne({ email });
   const watchlater = user.watchlater;
+  if (!isStored(watchlater, movie)) {
+    return res
+      .status(200)
+      .json({ msg: "Movie is not in watch later list", success: false });
+  }
   const newWatchlater = removeFromList(watchlater, movie);
 
   user.watchlater = newWatchlater;
@@ -66,15 +74,15 @@ const patchWatchlater = async (req, res) => {
 // Favourites
 // GET Favourites list for user
 const getFavourites = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.user;
 
-  const user = await User.findById(id);
+  const user = await User.findById(_id);
   const favourites = user.favourites;
 
   if (favourites.length === 0) {
     return res
       .status(400)
-      .json({ error: "This user does not have a favourites list" });
+      .json({ favourites });
   }
 
   return res.status(200).json({ favourites });
@@ -82,26 +90,30 @@ const getFavourites = async (req, res) => {
 
 // POST Favourites for user
 const postFavourites = async (req, res) => {
-  const { id, movie } = req.body;
+  const { email, movie } = req.body;
 
-  const user = await User.findById(id);
+  const user = await User.findOne({ email });
   const favourites = user.favourites;
 
   if (isStored(favourites, movie)) {
-    return res.status(200).json({ msg: "Movie is already in favourites list" });
+    return res
+      .status(200)
+      .json({ msg: "Movie is already in favourites list", success: false });
   }
 
   favourites.push(movie);
   user.favourites = favourites;
   user.save();
-  return res.status(200).json({ msg: "Movie was added to favourites list" });
+  return res
+    .status(200)
+    .json({ msg: "Movie was added to favourites list", success: true });
 };
 
 // PATCH remove from favourites
 const patchFavourites = async (req, res) => {
-  const { id, movie } = req.body;
+  const { email, movie } = req.body;
 
-  const user = await User.findById(id);
+  const user = await User.findOne({ email });
   const favourites = user.favourites;
   const newFavourites = removeFromList(favourites, movie);
 
