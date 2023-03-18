@@ -1,15 +1,40 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useLoaderData } from "react-router-dom";
-import { addItems, selectFavourite, selectWatchLater } from "../../features/WatchSlice";
 import { api_key, url } from "../../Global";
+import {
+  getWatchLater,
+  getFavourites,
+  addToList,
+  removeFromList,
+} from "../../Fetch/FetchUserList";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const MovieDetails = () => {
   const movie = useLoaderData();
-  const save = useSelector(selectWatchLater);
-  const heart = useSelector(selectFavourite);
-  const dispatch = useDispatch();
+  const [watchlater, setWatchLater] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const getWatch = async () => {
+      const list = await getWatchLater();
+
+      setWatchLater(list);
+    };
+    const getFav = async () => {
+      const list = await getFavourites();
+
+      setFavourites(list);
+    };
+
+    if (user) {
+      getWatch();
+      getFav();
+    }
+  }, [user]);
+
   const date = new Date(movie.release_date);
   const genres = movie.genres.map((genre) => {
     return genre.name;
@@ -28,12 +53,22 @@ const MovieDetails = () => {
   if (percentage >= 75 && percentage < 90) {
     color = "#00c04b";
   }
-  const saved = () => save.some(mv => mv.id === movie.id);
-  const hearted = () => heart.some(mv => mv.id === movie.id);
-
-  const handleStore = (key) => {
-    dispatch(addItems({ key, movie }))
+  let isWatchlater = false;
+  let isFavourite = false;
+  if (watchlater.length !== 0) {
+    isWatchlater = watchlater.watchlater.some((mv) => mv.id === movie.id);
   }
+  if (favourites.length !== 0) {
+    isFavourite = favourites.favourites.some((mv) => mv.id === movie.id);
+  }
+
+  const handleStore = async (key) => {
+    if (await addToList(key, movie)) {
+      return;
+    } else {
+      await removeFromList(key, movie);
+    }
+  };
 
   return (
     <div
@@ -84,17 +119,29 @@ const MovieDetails = () => {
               />
             </div>
             <div className="save-btns">
-              {saved() && (
-                <span className="glyphs save-red" onClick={() => handleStore('save')}></span>
+              {isWatchlater && (
+                <span
+                  className="glyphs save-red"
+                  onClick={() => handleStore("watchlater")}
+                ></span>
               )}
-              {!saved() && (
-                <span className="glyphs save-white" onClick={() => handleStore('save')}></span>
+              {!isWatchlater && (
+                <span
+                  className="glyphs save-white"
+                  onClick={() => handleStore("watchlater")}
+                ></span>
               )}
-              {hearted() && (
-                <span className="glyphs heart-red" onClick={() => handleStore('heart')}></span>
+              {isFavourite && (
+                <span
+                  className="glyphs heart-red"
+                  onClick={() => handleStore("favourites")}
+                ></span>
               )}
-              {!hearted() && (
-                <span className="glyphs heart-white" onClick={() => handleStore('heart')}></span>
+              {!isFavourite && (
+                <span
+                  className="glyphs heart-white"
+                  onClick={() => handleStore("favourites")}
+                ></span>
               )}
             </div>
           </div>

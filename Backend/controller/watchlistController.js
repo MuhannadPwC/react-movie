@@ -24,8 +24,8 @@ const getWatchlater = async (req, res) => {
 
   if (watchlater.length === 0) {
     return res
-      .status(400)
-      .json({ watchlater });
+      .status(200)
+      .json({ watchlater: [] });
   }
 
   return res.status(200).json({ watchlater });
@@ -81,8 +81,8 @@ const getFavourites = async (req, res) => {
 
   if (favourites.length === 0) {
     return res
-      .status(400)
-      .json({ favourites });
+      .status(200)
+      .json({ favourites: [] });
   }
 
   return res.status(200).json({ favourites });

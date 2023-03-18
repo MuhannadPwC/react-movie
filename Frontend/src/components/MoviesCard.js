@@ -1,17 +1,37 @@
+import { useEffect, useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  addItems,
-  selectFavourite,
-  selectWatchLater,
-} from "../features/WatchSlice";
+  getWatchLater,
+  addToList,
+  removeFromList,
+  getFavourites,
+} from "../Fetch/FetchUserList";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const MoviesCard = ({ movie }) => {
-  const watchlater = useSelector(selectWatchLater);
-  const favourites = useSelector(selectFavourite);
-  const dispatch = useDispatch();
+  const [watchlater, setWatchLater] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const getWatch = async () => {
+      const list = await getWatchLater();
+
+      setWatchLater(list);
+    };
+    const getFav = async () => {
+      const list = await getFavourites();
+
+      setFavourites(list);
+    };
+
+    if (user) {
+      getWatch();
+      getFav();
+    }
+  }, [user]);
   const percentage = Math.round(movie.vote_average * 10);
   let color = "#008631";
   if (percentage <= 25) {
@@ -26,20 +46,21 @@ const MoviesCard = ({ movie }) => {
   if (percentage >= 75 && percentage < 90) {
     color = "#00c04b";
   }
-  const saved =
-    watchlater.length > 0
-      ? () => watchlater.some((mv) => mv.id === movie.id)
-      : () => {
-          return false;
-        };
-  const hearted =
-    favourites.length > 0
-      ? () => favourites.some((mv) => mv.id === movie.id)
-      : () => {
-          return false;
-        };
-  const handleStore = (key) => {
-    dispatch(addItems({ key, movie }));
+  let isWatchlater = false;
+  let isFavourite = false;
+  if (watchlater.length !== 0) {
+    isWatchlater = watchlater.watchlater.some((mv) => mv.id === movie.id);
+  }
+  if (favourites.length !== 0) {
+    isFavourite = favourites.favourites.some((mv) => mv.id === movie.id);
+  }
+
+  const handleStore = async (key) => {
+    if (await addToList(key, movie)) {
+      return;
+    } else {
+      await removeFromList(key, movie);
+    }
   };
 
   return (
@@ -56,8 +77,8 @@ const MoviesCard = ({ movie }) => {
           <div className="glyphs dots"></div>
           <div className="dropped-options">
             <div className="group">
-              {saved() && <span className="glyphs save-red"></span>}
-              {!saved() && <span className="glyphs save"></span>}
+              {isWatchlater && <span className="glyphs save-red"></span>}
+              {!isWatchlater && <span className="glyphs save"></span>}
               <button
                 className="watch-btn"
                 onClick={() => handleStore("watchlater")}
@@ -67,8 +88,8 @@ const MoviesCard = ({ movie }) => {
             </div>
             <hr />
             <div className="group">
-              {hearted() && <span className="glyphs heart-red"></span>}
-              {!hearted() && <span className="glyphs heart"></span>}
+              {isFavourite && <span className="glyphs heart-red"></span>}
+              {!isFavourite && <span className="glyphs heart"></span>}
               <button
                 className="fav-btn"
                 onClick={() => handleStore("favourites")}

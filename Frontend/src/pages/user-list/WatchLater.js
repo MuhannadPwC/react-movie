@@ -1,20 +1,35 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import MoviesCard from "../../components/MoviesCard";
-import { selectWatchLater } from "../../features/WatchSlice";
+import { getWatchLater } from "../../Fetch/FetchUserList";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const WatchLater = () => {
-  const save = useSelector(selectWatchLater);
-  const hasSaved =
-    save.length > 0
+  const [watchlater, setWatchLater] = useState([]);
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const getWatch = async () => {
+      const list = await getWatchLater();
+
+      setWatchLater(list);
+    };
+
+    if (user) {
+      getWatch();
+    }
+  }, [user]);
+
+  const hasWatchLater =
+    watchlater.length !== 0
       ? null
-      : "you don't have any movies saved to your watch later";
+      : "You do not have any movies saved to watch later";
 
   return (
     <div className="watchlater">
-      {hasSaved && <div className="movie-error">{hasSaved}</div>}
-      {save.length > 0 && (
+      {hasWatchLater && <div className="movie-error">{hasWatchLater}</div>}
+      {watchlater.length !== 0 && (
         <div className="grid-view">
-          {save.map((movie) => (
+          {watchlater.watchlater.map((movie) => (
             <MoviesCard movie={movie} key={movie.id} />
           ))}
         </div>

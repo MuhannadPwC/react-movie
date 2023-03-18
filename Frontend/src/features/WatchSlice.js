@@ -10,10 +10,8 @@ async function getFromList(key) {
   });
   const list = await response.json();
   console.log(list);
-  if (list.length > 0) {
-    return JSON.parse(list);
-  }
-  return [];
+
+  return list;
 }
 
 async function addToList(key, item) {
@@ -45,8 +43,8 @@ async function removeFromList(key, item) {
 }
 
 const initialState = {
-  favourites: getFromList("favourites"),
-  watchLater: getFromList("watchlater"),
+  favourites: [],
+  watchLater: [],
 };
 
 export const watchSlice = createSlice({
