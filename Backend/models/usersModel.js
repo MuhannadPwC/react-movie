@@ -17,13 +17,13 @@ const userSchema = new Schema(
     },
     watchlater: [
       {
-        type: Number,
+        type: Object,
         default: [],
       },
     ],
     favourites: [
       {
-        type: Number,
+        type: Object,
         default: [],
       },
     ],

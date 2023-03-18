@@ -3,9 +3,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Navigate
 } from "react-router-dom";
-import { useAuthContext } from "./hooks/useAuthContext"; 
 
 // Layouts
 import RootLayout from "./layouts/RootLayout";
@@ -27,10 +25,18 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />}/>
-      <Route path="/movies" element={<MoviesLayout />} errorElement={<NotFound />}>
+      <Route path="/signup" element={<SignUp />} />
+      <Route
+        path="/movies"
+        element={<MoviesLayout />}
+        errorElement={<NotFound />}
+      >
         <Route index element={<MoviesList />} />
-        <Route path=":id" element={<MovieDetails />} loader={movieDetailsLoader} />
+        <Route
+          path=":id"
+          element={<MovieDetails />}
+          loader={movieDetailsLoader}
+        />
       </Route>
       <Route path="/userlists" element={<UserListLayout />}>
         <Route path="watchlater" element={<WatchLater />} />

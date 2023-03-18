@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AuthContext } from '../context/AuthContext'
+
+const { user } = AuthContext();
 
 function getFromList(key) {
   const items = localStorage.getItem(key);

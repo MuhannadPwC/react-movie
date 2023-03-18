@@ -10,6 +10,5 @@ usersRouter.post("/login", postLogin);
 // Sign Up
 usersRouter.post("/signup", postSignup);
 
-// Logout
 
 module.exports = usersRouter;

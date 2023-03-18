@@ -6,6 +6,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const usersRouter = require("./routes/users");
+const watchlistRouter = require("./routes/watchlist");
 
 // express app
 const app = express();
@@ -15,12 +16,13 @@ app.use(express.json());
 
 // routes
 app.use("/api/users", usersRouter);
+app.use("/api/watchlist", watchlistRouter);
 
 // Connect to db
 mongoose
   .connect(mongo_uri)
   .then(() => {
-    console.log('Connected to the database');
+    console.log("Connected to the database");
     app.listen(port, () => {
       console.log(`Listening on localhost:${port}`);
     });
