@@ -49,10 +49,10 @@ const MoviesCard = ({ movie }) => {
   let isWatchlater = false;
   let isFavourite = false;
   if (watchlater.length !== 0) {
-    isWatchlater = watchlater.watchlater.some((mv) => mv.id === movie.id);
+    isWatchlater = watchlater.some((mv) => mv.id === movie.id);
   }
   if (favourites.length !== 0) {
-    isFavourite = favourites.favourites.some((mv) => mv.id === movie.id);
+    isFavourite = favourites.some((mv) => mv.id === movie.id);
   }
 
   const handleStore = async (key) => {

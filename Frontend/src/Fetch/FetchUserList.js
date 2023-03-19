@@ -10,7 +10,7 @@ export const getWatchLater = async () => {
 
   const list = await response.json();
 
-  return list;
+  return list.watchlater;
 }
 
 export const getFavourites = async () => {
@@ -22,7 +22,7 @@ export const getFavourites = async () => {
 
   const list = await response.json();
 
-  return list;
+  return list.favourites;
 }
 
 export const addToList = async (key, movie) => {

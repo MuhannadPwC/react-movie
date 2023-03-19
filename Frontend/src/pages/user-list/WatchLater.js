@@ -29,7 +29,7 @@ const WatchLater = () => {
       {hasWatchLater && <div className="movie-error">{hasWatchLater}</div>}
       {watchlater.length !== 0 && (
         <div className="grid-view">
-          {watchlater.watchlater.map((movie) => (
+          {watchlater.map((movie) => (
             <MoviesCard movie={movie} key={movie.id} />
           ))}
         </div>

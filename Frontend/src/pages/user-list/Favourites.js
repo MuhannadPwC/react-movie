@@ -27,7 +27,7 @@ const Favourites = () => {
       {hasFavourites && <div className="movie-error">{hasFavourites}</div>}
       {favourites.length !== 0 && (
         <div className="grid-view">
-          {favourites.favourites.map((movie) => (
+          {favourites.map((movie) => (
             <MoviesCard movie={movie} key={movie.id} />
           ))}
         </div>

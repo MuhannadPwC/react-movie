@@ -16,7 +16,6 @@ const removeFromList = (list, movie) => {
 // WatchLater
 // GET WatchLater list for user
 const getWatchlater = async (req, res) => {
-  console.log(req.user);
   const { _id } = req.user;
 
   const user = await User.findById(_id);
