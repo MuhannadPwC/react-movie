@@ -21,31 +21,39 @@ const SignUp = () => {
   };
 
   return (
-    <form className="signup" onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+    <div className="sign-div">
+      <form className="sign-form" onSubmit={handleSubmit}>
+        <h2>Register</h2>
 
-      <label>Email:</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        autoComplete="off"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <div className="email-flex">
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            autoComplete="off"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-      <label>Password:</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <div className="password-flex">
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-      <button disabled={isLoading}>Sign Up</button>
-      {error && <div className="signup-error">{error}</div>}
-    </form>
+        <button disabled={isLoading} className="sign-btn">
+          Register
+        </button>
+        {error && <div className="sign-error">{error}</div>}
+      </form>
+    </div>
   );
 };
 

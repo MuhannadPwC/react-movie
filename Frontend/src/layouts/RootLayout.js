@@ -41,11 +41,11 @@ const RootLayout = () => {
                 height="50"
               />
             </NavLink>
-            {user && <button onClick={handleLogout}>Logout</button>}
+            {user && <button onClick={handleLogout} className="logout">Logout</button>}
             {!user && (
-              <div>
+              <div className="vstack">
                 <NavLink to="login">Login</NavLink>
-                <NavLink to="signup">Sign Up</NavLink>
+                <NavLink to="signup">Register</NavLink>
               </div>
             )}
           </div>
