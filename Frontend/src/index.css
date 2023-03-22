@@ -159,7 +159,7 @@ label {
   padding: 8px;
   border: none;
   border-radius: 30px;
-  height: 26px;
+  height: 42px;
   line-height: 26px;
   font-size: 1.1em;
   width: 95%;
@@ -259,13 +259,15 @@ label {
   left: 0;
   max-width: 200px;
 }
-.image {
+.mv-image {
   width: 150px;
+  min-width: 150px;
   position: relative;
 }
 .movie-card img {
   border-radius: 12px;
   width: 150px;
+  min-width: 150px;
 }
 .progress-bar {
   position: absolute;
@@ -373,13 +375,14 @@ label {
   align-items: center;
   margin: 10px 0;
 }
-.movie-panel .image,
-.movie-panel .image img {
+.movie-panel .mv-image,
+.movie-panel .mv-image img {
   width: 150px;
+  min-width: 150px;
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
 }
-.movie-panel .image {
+.movie-panel .mv-image {
   display: flex;
   align-items: center;
 }
@@ -442,6 +445,7 @@ label {
   border-bottom-right-radius: 30px;
   border-right: none;
   width: 96%;
+  height: 44px;
 }
 .filter-search .searchform .search-btn {
   height: 44px;
@@ -469,6 +473,7 @@ label {
   border-radius: 8px;
   border: 1px solid;
   min-height: 30px;
+  height: 30px;
   min-width: 115px;
   width: 115px;
   font-size: 14px;
@@ -547,7 +552,7 @@ label {
   flex-wrap: nowrap;
   gap: 12px;
 }
-.details-container .image,
+.details-container .mv-image,
 .details-container img {
   width: 250px;
   min-width: 250px;

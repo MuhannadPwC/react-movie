@@ -100,7 +100,7 @@ const MovieDetails = () => {
       }}
     >
       <div className="details-container">
-        <div className="image">
+        <div className="mv-image">
           <img
             src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
             alt={movie.title}
