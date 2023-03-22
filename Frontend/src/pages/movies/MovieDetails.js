@@ -10,12 +10,14 @@ import {
 } from "../../Fetch/FetchUserList";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useToast } from "@chakra-ui/react";
 
 const MovieDetails = () => {
   const movie = useLoaderData();
   const [watchlater, setWatchLater] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const { user } = useAuthContext();
+  const toast = useToast();
 
   useEffect(() => {
     const getWatch = async () => {
@@ -63,10 +65,26 @@ const MovieDetails = () => {
   }
 
   const handleStore = async (key) => {
+    const item = document.getElementById(key);
     if (await addToList(key, movie)) {
-      return;
+      toast({
+        title: `Movie was added to ${key}`,
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+      item.className = `glyphs ${key}-red`;
     } else {
       await removeFromList(key, movie);
+      toast({
+        title: `Movie was removed from ${key}`,
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+      item.className = `glyphs ${key}-white`;
     }
   };
 
@@ -121,26 +139,30 @@ const MovieDetails = () => {
             <div className="save-btns">
               {isWatchlater && (
                 <span
-                  className="glyphs save-red"
+                  className="glyphs watchlater-red"
                   onClick={() => handleStore("watchlater")}
+                  id="watchlater"
                 ></span>
               )}
               {!isWatchlater && (
                 <span
-                  className="glyphs save-white"
+                  className="glyphs watchlater-white"
                   onClick={() => handleStore("watchlater")}
+                  id="watchlater"
                 ></span>
               )}
               {isFavourite && (
                 <span
-                  className="glyphs heart-red"
+                  className="glyphs favourites-red"
                   onClick={() => handleStore("favourites")}
+                  id="favourites"
                 ></span>
               )}
               {!isFavourite && (
                 <span
-                  className="glyphs heart-white"
+                  className="glyphs favourites-white"
                   onClick={() => handleStore("favourites")}
+                  id="favourites"
                 ></span>
               )}
             </div>

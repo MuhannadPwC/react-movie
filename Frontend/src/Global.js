@@ -1,3 +1,3 @@
-export const url = 'https://api.themoviedb.org/3';
-export const api_key = '0557b758465b10519557edb25fc53d86';
+export const url = process.env.REACT_APP_MOVIEAPI_URL;
+export const api_key = process.env.REACT_APP_API_KEY;
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { useToast } from "@chakra-ui/react";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 import {
@@ -14,6 +15,7 @@ const MoviesCard = ({ movie }) => {
   const [watchlater, setWatchLater] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const { user } = useAuthContext();
+  const toast = useToast();
 
   useEffect(() => {
     const getWatch = async () => {
@@ -56,10 +58,26 @@ const MoviesCard = ({ movie }) => {
   }
 
   const handleStore = async (key) => {
+    const item = document.getElementById(`${key}-${movie.id}`);
     if (await addToList(key, movie)) {
-      return;
+      toast({
+        title: `Movie was added to ${key}`,
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+      item.className = `glyphs ${key}-red`;
     } else {
       await removeFromList(key, movie);
+      toast({
+        title: `Movie was removed from ${key}`,
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+      item.className = `glyphs ${key}`;
     }
   };
 
@@ -77,8 +95,12 @@ const MoviesCard = ({ movie }) => {
           <div className="glyphs dots"></div>
           <div className="dropped-options">
             <div className="group">
-              {isWatchlater && <span className="glyphs save-red"></span>}
-              {!isWatchlater && <span className="glyphs save"></span>}
+              {isWatchlater && (
+                <span className="glyphs watchlater-red" id={`watchlater-${movie.id}`}></span>
+              )}
+              {!isWatchlater && (
+                <span className="glyphs watchlater" id={`watchlater-${movie.id}`}></span>
+              )}
               <button
                 className="watch-btn"
                 onClick={() => handleStore("watchlater")}
@@ -88,8 +110,12 @@ const MoviesCard = ({ movie }) => {
             </div>
             <hr />
             <div className="group">
-              {isFavourite && <span className="glyphs heart-red"></span>}
-              {!isFavourite && <span className="glyphs heart"></span>}
+              {isFavourite && (
+                <span className="glyphs favourites-red" id={`favourites-${movie.id}`}></span>
+              )}
+              {!isFavourite && (
+                <span className="glyphs favourites" id={`favourites-${movie.id}`}></span>
+              )}
               <button
                 className="fav-btn"
                 onClick={() => handleStore("favourites")}

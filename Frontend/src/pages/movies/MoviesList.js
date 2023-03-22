@@ -1,11 +1,18 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import MoviePanel from "../../components/MoviePanel";
 import SearchForm from "../../components/SearchForm";
 import SearchFetch from "../../Fetch/SearchFetch";
 import { api_key, url } from "../../Global";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const MoviesList = () => {
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  if (!user) {
+    navigate("/login");
+  }
+
   const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");

@@ -29,7 +29,7 @@ const RootLayout = () => {
           </div>
           <div className="flexbox">
             <NavLink to="userlists">
-              <span className="glyphs save-white"></span>
+              <span className="glyphs watchlater-white"></span>
             </NavLink>
             <NavLink to="movies">
               <img

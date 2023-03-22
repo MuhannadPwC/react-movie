@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import MoviesCard from "../components/MoviesCard";
 import SearchForm from "../components/SearchForm";
 import FetchPopular from "../Fetch/FetchPopular";
 import { api_key, url } from "../Global";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  if (!user) {
+    navigate("/login");
+  }
   const {
     data: popular,
     isLoading,
